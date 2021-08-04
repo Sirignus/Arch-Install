@@ -57,6 +57,11 @@ else
     pacman -S grub --noconfirm
 
     echo "On what disk should GRUB be installed (ex /dev/sda)"
-    read $DISK
+    read DISK
     grub-install --target=i386-pc ${DISK}
 fi
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+useradd -m -G games,wheel,audio,disk,input,kvm,optical,scanner,storage,video,network thomas
+passwd thomas
